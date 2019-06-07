@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, TextInput, View } from 'react-native';
-
-export default class PizzaTranslator extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {pizza: ''};  //Tạo một biến lưu trạng thái là text
+import { Text, View } from 'react-native';
+import { ListItem } from 'react-native-elements';
+const list = [
+  {
+    title: 'Appointments',
+    icon: 'av-timer'
+  },
+  {
+    title: 'Trips',
+    icon: 'flight-takeoff'
   }
+]
 
+export default class ListApp extends Component {
   render() {
     return (
-      <View style={{padding: 10}}>
-        <TextInput
-          style={{height: 40}}
-          placeholder="Type here to translate!"
-          onChangeText={(text) => this.setState({pizza: text})}  //Khi người dùng gõ thì cập nhật lại trạng thái text
-        />
-        <Text style={{padding: 10, fontSize: 42}}>
-          {this.state.pizza.split(' ').map((word) => word && '🍕').join(' ')}
-        </Text>
+      <View style={{ marginTop:20,  flex: 1, flexDirection: 'column' }}>
+        <View>
+          {
+            list.map((item, i) => (
+              <ListItem
+                key={i}
+                title={item.title}
+                leftIcon={{ name: item.icon }}
+              />
+            ))
+          }
+        </View>   
       </View>
     );
   }

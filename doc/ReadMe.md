@@ -1,16 +1,8 @@
-react-native run-ios --simulator="iPhone 6".
+react-native run-ios --simulator="iPhone 6"
 
 # Code nguyên thuỷ
 
 ```javascript
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
@@ -321,3 +313,98 @@ export default class PizzaTranslator extends Component {
 }
 ```
 
+# Handling Button
+
+
+# List Item
+
+## List Icon
+![](list_icon.jpg)
+
+```javascript
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
+import { ListItem } from 'react-native-elements';
+const list = [
+  {
+    title: 'Appointments',
+    icon: 'av-timer'
+  },
+  {
+    title: 'Trips',
+    icon: 'flight-takeoff'
+  }
+]
+
+export default class ListApp extends Component {
+  render() {
+    return (
+      <View style={{ marginTop:20,  flex: 1, flexDirection: 'column' }}>
+        <View>
+          {
+            list.map((item, i) => (
+              <ListItem
+                key={i}
+                title={item.title}
+                leftIcon={{ name: item.icon }}
+              />
+            ))
+          }
+        </View>   
+      </View>
+    );
+  }
+}
+```
+
+## List with Rating below
+![](list_rating.jpg)
+
+```javascript
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
+import { ListItem } from 'react-native-elements';
+import { Rating, AirbnbRating } from 'react-native-elements';
+
+
+const list = [
+  {
+    name: 'Amy Farha',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Vice President'
+  },
+  {
+    name: 'Chris Jackson',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Vice Chairman'
+  },
+]
+
+export default class ListApp extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1, flexDirection: 'column' }}>
+        <View>
+          {
+            list.map((l, i) => (
+              <ListItem
+                key={i}
+                leftAvatar={{ source: { uri: l.avatar_url } } }
+                title={l.name}
+                subtitle={l.subtitle}
+              />
+            ))
+          }
+        </View>
+        <AirbnbRating
+          count={11}
+          reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
+          defaultRating={11}
+          size={20}
+        />
+
+      </View>
+    );
+  }
+}
+```
